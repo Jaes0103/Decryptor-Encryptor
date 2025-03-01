@@ -28,7 +28,7 @@ def encrypt_decrypt():
     output_text.insert(tk.END, "Please enter text and key!")
     return
 
-  # Update label and text type based on button clicked
+#this updates the labels and text based on the radio button clicked
   output_label_text = "Plaintext:" if mode == "decrypt" else "Ciphertext:"
   output_label.config(text=output_label_text)
   text_label_text = "Ciphertext:" if mode == "encrypt" else "Plaintext:"
@@ -36,11 +36,10 @@ def encrypt_decrypt():
 
   result = vigenere_cipher(text, key, mode)
 
-  # Prepare output in a table
   output_lines = []
-  header_line = f"Plaintext                     Key                           Ciphertext\n"  # Bold header line
+  header_line = f"Plaintext                     Key                           Ciphertext\n"  
   output_lines.append(header_line)
-  max_len = max(len(text.strip()), len(key.strip()), len(result.strip()))  # Find maximum length without spaces
+  max_len = max(len(text.strip()), len(key.strip()), len(result.strip()))  
 
   for i in range(len(text)):
     if not text[i].isalpha():
@@ -50,11 +49,10 @@ def encrypt_decrypt():
   output_text.delete("1.0", tk.END)
   output_text.insert(tk.END, f"User Input:\n{text}\n\nKey: {key}\n\nOutput:\n" + "\n".join(output_lines))
 
-# Create the main window
 root = tk.Tk()
 root.title("Vigenere Cipher")
 root.geometry("800x800") 
-# Radio buttons for wncrypt and decrypt
+
 mode_var = tk.StringVar()
 mode_var.set("encrypt")  
 
@@ -76,11 +74,9 @@ key_label.pack()
 key_entry = tk.Entry(root)
 key_entry.pack()
 
-# Button for encryption/decryption
 encrypt_button = tk.Button(root, text="Encrypt/Decrypt", command=encrypt_decrypt)
 encrypt_button.pack()
 
-# Output text box
 output_label = tk.Label(root, text="Output:")
 output_label.pack()
 
